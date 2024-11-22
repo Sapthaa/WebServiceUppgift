@@ -3,16 +3,12 @@ import com.sapthaa.webserviceuppgift.model.Movie;
 import com.sapthaa.webserviceuppgift.service.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.util.List;
-
 
 @RestController
 @RequestMapping("/movies")
 public class MovieController {
 
     private final MovieService movieService;
-
-
 
     public MovieController(MovieService movieService) {
         this.movieService = movieService;
@@ -21,13 +17,13 @@ public class MovieController {
 
     // Hämtar alla filmer i min databas
     @GetMapping()
-    public ResponseEntity<List<Movie>> getAllMovies() {
+    public ResponseEntity<Object> getAllMovies() {
         return movieService.getAllMovies();
     }
 
     // Hämtar en film via id
     @GetMapping("/movie/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> getMovieById(@PathVariable("id") Long id) {
         return movieService.getMovieById(id);
     }
 
@@ -45,19 +41,19 @@ public class MovieController {
 
     // Hämtar en film i min databas via titel
     @GetMapping("/movie/search/{title}")
-    public ResponseEntity<List<Movie>> searchMovieByTitle(@PathVariable("title") String title) {
+    public ResponseEntity<Object> searchMovieByTitle(@PathVariable("title") String title) {
         return movieService.searchMovieByTitle(title);
     }
 
     // Sparar en film till min databas via id
     @PostMapping("/movie/save/{id}")
-    public ResponseEntity<Movie> saveMovie(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> saveMovie(@PathVariable("id") Long id) {
         return movieService.getAndSaveMovieById(id);
     }
 
     // Uppdaterar en films titel och beskrivning via id
     @PutMapping("/movie/update/{id}")
-    public ResponseEntity<Movie> updateMovie(@PathVariable("id") Long id, @RequestBody Movie movie) {
+    public ResponseEntity<Object> updateMovie(@PathVariable("id") Long id, @RequestBody Movie movie) {
         return movieService.updateMovieById(id, movie);
     }
 
