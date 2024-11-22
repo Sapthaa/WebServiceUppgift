@@ -68,7 +68,7 @@ public class MovieService {
 
     // Search movie (min databas)
     public ResponseEntity<List<Movie>> searchMovieByTitle(String title) {
-        List<Movie> movie = movieRepository.findByTitle(title);
+        List<Movie> movie = movieRepository.findByTitleContainingIgnoreCase(title);
 
         if (movie.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
