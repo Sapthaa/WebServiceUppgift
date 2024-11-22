@@ -1,5 +1,4 @@
 package com.sapthaa.webserviceuppgift.model;
-
 import jakarta.persistence.Embeddable;
 
 @Embeddable
